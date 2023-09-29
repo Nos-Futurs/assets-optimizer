@@ -4,5 +4,5 @@
 
 optimize-png() {
     local file="$1"
-    pngquant "$file" --force "$file"
+    pngquant "$file" --force -o "$file"
 }
