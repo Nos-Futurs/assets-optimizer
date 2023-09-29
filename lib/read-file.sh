@@ -1,17 +1,18 @@
 #!/bin/bash
-# Create assets optimizer
-
-# use pngquant to optimize png
-# Then transform png to webp
-
-# use svgo to optimize svg
-
-# use fonttools to optimize fonts
-# transform font to woff2
+. lib/optimize-svg.sh
+. lib/optimize-png.sh
 
 read_file() {
     local file="$1"
     local indent="$2"
-    file_name=$(basename "$file")
+    local file_name=$(basename "$file")
     echo -e "$indent" "$file_name"
+    if file -b --mime "$file" | grep -q "image/svg+xml"; then
+        optimize-svg "$file"
+    elif file -b --mime "$file" | grep -q "image/png"; then
+        optimize-png "$file" 
+    else 
+        echo "error"
+    fi
+
 }
