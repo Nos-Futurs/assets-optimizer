@@ -1,0 +1,1 @@
+pyftsubset handsomeregular.ttf --output-file=handsome.ttf --unicodes-file=file-of-code.txt
